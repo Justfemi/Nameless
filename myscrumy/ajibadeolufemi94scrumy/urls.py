@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.get_grading_parameters),
+    #path('', views.index, name='index'),
 ]
