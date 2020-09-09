@@ -4,8 +4,8 @@ from .models import ScrumyGoals, ScrumyHistory, GoalStatus
 
 
 # Create your views here.
-def get_grading_parameters(request):
-    return HttpResponse("This is a Scrum Application")
+#def get_grading_parameters(request):
+#    return HttpResponse("This is a Scrum Application")
 
 def index(request):
     goal = ScrumyGoals.objects.filter(goal_name = 'Learn Django')
