@@ -44,11 +44,10 @@ def gen_id():
     else:
         return g_id
 
-def home (request):
+def home(request):
     goals = ScrumyGoals.objects.filter(goal_name='Keep Learning Django')
-
     output = ', '.join([goal.goal_name for goal in goals])
-    return HttpResponse( output )
+    return HttpResponse(output)
 
     
 
