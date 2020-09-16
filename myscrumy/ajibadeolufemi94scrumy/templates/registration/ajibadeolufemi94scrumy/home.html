@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+</head>
+<body>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Weekly Goals</th>
+                    <th>Daily Goals</th>
+                    <th>Verify Goals</th>
+                    <th>Done Goals</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>
+                        <br>{{ user }}
+                    </td>
+                    <td>
+                        {{ for week in weekly }}
+                        {% if user == week.user %}
+                        <br>{{ week.goal_name }}
+                        <br><a href="{% url 'move goal' week.goal_id %}">{{ week.goal_id }}</a>
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ day week in daily }}
+                        {% if user == day.user %}
+                        <br>{{ day.goal_name }}
+                        <a href="{% url 'move goal' day.goal_id %}">{{ day.goal_id }}</a>
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ day ver in verily }}
+                        {% if user == ver.user %}
+                        <br>{{ ver.goal_name }}
+                        <a href="{% url 'move goal' ver.goal_id %}">{{ ver.goal_id }}</a>
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ don week in done }}
+                        {% if user == don.user %}
+                        <br>{{ don.goal_name }}
+                        <a href="{% url 'move goal' day.goal_id %}">{{ don.goal_id }}</a>
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
