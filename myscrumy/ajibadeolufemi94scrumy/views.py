@@ -21,7 +21,7 @@ def move_goal (request, goal_id):
 
 def add_goal(request):
     scrumy = ScrumyGoals.objects.create(goal_name = 'Keep Learning Django', 
-    goal_id= gen_id(), moved_by = 'Louis', created_by = 'Louis', 
+    goal_id= random.randint(1000, 9999), moved_by = 'Louis', created_by = 'Louis', 
     owner = 'Louis', goal_status = GoalStatus.objects.get(status_name = 'Weekly Goals'), 
     user = User.objects.get(username = 'louis')  )
     scrumy.save()
