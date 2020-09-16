@@ -27,14 +27,14 @@ def add_goal(request):
     scrumy.save()
     return HttpResponse('Goal has been successgully added')
 
-def gen_id():
+"""def gen_id():
     id_list = ScrumyGoals.objects.all()
     id_list = [idd.goal_id for idd in id_list]
     g_id = random.randint(1000, 9999)
     if g_id in id_list:
         g_id = random.randint(1000, 9999)
     else:
-        return g_id
+        return g_id """
 
 def home(request):
     goals = ScrumyGoals.objects.filter(goal_name='Keep Learning Django')
