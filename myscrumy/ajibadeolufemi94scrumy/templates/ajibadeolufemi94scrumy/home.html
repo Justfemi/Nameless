@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
-    <style>
+    <!-- <style>
     
         body {
         background-color: rgb(236, 235, 235);
@@ -50,7 +50,7 @@
             color: brown;
             font-size: large;
         }
-    </style>
+    </style> -->
 </head>
 <body>
     <!--<div id = 'head'>
@@ -79,17 +79,17 @@
             <tbody>
                 {% for user in users %}
                 <tr>
-                    <td>
+                    <th>
                         <br>{{ user }}
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                         {% for item in goal_name %}
                         {% if user == item.user %}
                         {{ item.goal_name}}
                         {{ item.goal_id }}
                         {% endif %}
                         {% endfor %}
-                    </td>
+                    </th>
                     <!-- <td>
                         {% for week in weekly %}
                         {% if user == week.user %}
