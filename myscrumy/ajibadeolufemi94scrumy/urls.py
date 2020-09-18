@@ -7,5 +7,5 @@ urlpatterns = [
     path('movegoal/<int:goal_id>', views.move_goal, name='move goal'),
     path('addgoal', views.add_goal, name='add goal'),
     path('home', views.home, name='home'),
-    path('accounts/', include('django.contrib.auth.urls') )
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

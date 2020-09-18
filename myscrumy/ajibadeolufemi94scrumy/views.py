@@ -36,28 +36,31 @@ def gen_id():
         return g_id 
 
 def home(request):
-    goals = ScrumyGoals.objects.filter(goal_name='Learning Django')
+    goal_name = ScrumyGoals.objects.filter(goal_name='Learn Django')
+    goal_id = ScrumyGoals.objects.filter(goal_id = gen_id())
     users = User.objects.all()
-    weekly = GoalStatus.objects.get(status_name="Weekly Goal")
+    '''weekly = GoalStatus.objects.get(status_name="Weekly Goal")
     weekly = weekly.scrumygoals_set.all()
     daily = GoalStatus.objects.get(status_name="Daily Goal")
     daily = daily.scrumygoals_set.all()
     verify = GoalStatus.objects.get(status_name="Verify Goal")
     verify = verify.scrumygoals_set.all()
     done = GoalStatus.objects.get(status_name="Done Goal")
-    done = done.scrumygoals_set.all()
-    goals = ScrumyGoals.objects.filter(goal_name="Learn django", goal_id= gen_id())
-    
+    done = done.scrumygoals_set.all()'''
+
+    #goals = ScrumyGoals.objects.filter(goal_name="Learn django", goal_id= gen_id())
     #goals = ScrumyGoals.objects.filter(goal_name='Keep Learning Django')
+
     context = {
-        'goals':goals,
+        'goal_name':goal_name,
         'users': users,
-        'weekly': weekly,
-        'daily':daily,
-        'verify':verify,
-        'done':done,
+        'goal_id': goal_id,
+        #'weekly': weekly,
+        #'daily':daily,
+        #'verify':verify,
+        #'done':done,
     }
-    output = ', '.join([goal.goal_name for goal in goals])
+    #output = ', '.join([goal.goal_name for goal in goals])
     return render(request, "ajibadeolufemi94scrumy/home.html", context)
 
     

@@ -8,7 +8,8 @@
 </head>
 <body>
     <div class="form Container">
-       <form method="POST"> 
+       <form method="POST">
+           {% csrf_token %}
            <label>Username:</label>
            <input type="text" name="username"> 
            <br><label>Password:</label> 
