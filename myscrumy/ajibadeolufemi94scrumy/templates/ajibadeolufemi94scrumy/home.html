@@ -5,11 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
+    <style>
+    
+        body {
+        background-color: rgb(236, 235, 235);
+        }
+        table{
+            width: 50%;
+            height: 100px;
+            margin:50px auto;
+            font-size: large;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            
+        }
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    
+        th,
+        td {
+            padding: 5px;
+            text-align: left;
+            
+        }
+        thead{
+            background-color: cadetblue;
+        }
+        li.addgoal{
+            font-size: large;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: bold;
+            color: brown;
+        }
+        div#head{
+            width: 100%;
+            height: 120px;
+            color: antiquewhite;
+            background-color: cadetblue;
+        }
+        a{
+            color: brown;
+            font-size: large;
+        }
+    </style>
 </head>
 <body>
+    <div id = 'head'>
+        <h2>Welcome {{current_user}},
+           {%if current_user.username == 'louis'%} You are the Super Admin
+           {%else%}
+           you're a/an {{group}}
+           {%endif%}
+       </h2> 
+       <li class="addgoal"><a href="{% url 'add goal' %}"> Visit here to add Goals </a></li><br>  
+       {% if current_user.is_authenticated %}
+           <a class="logt" href="{% url 'logout' %}">logout</a>
+       {%endif%}
+       </div>
     <div>
         <table>
-            <thead>
+            <thead class="head">
                 <tr>
                     <th>User</th>
                     <th>Weekly Goals</th>
@@ -25,7 +83,7 @@
                         <br>{{ user }}
                     </td>
                     <td>
-                        {{ for week in weekly }}
+                        {% for week in weekly %}
                         {% if user == week.user %}
                         <br>{{ week.goal_name }}
                         <br><a href="{% url 'move goal' week.goal_id %}">{{ week.goal_id }}</a>
@@ -33,7 +91,7 @@
                         {% endfor %}
                     </td>
                     <td>
-                        {{ day week in daily }}
+                        {% for day in daily %}
                         {% if user == day.user %}
                         <br>{{ day.goal_name }}
                         <a href="{% url 'move goal' day.goal_id %}">{{ day.goal_id }}</a>
@@ -41,7 +99,7 @@
                         {% endfor %}
                     </td>
                     <td>
-                        {{ day ver in verily }}
+                        {% for ver in verily %}
                         {% if user == ver.user %}
                         <br>{{ ver.goal_name }}
                         <a href="{% url 'move goal' ver.goal_id %}">{{ ver.goal_id }}</a>
@@ -49,7 +107,7 @@
                         {% endfor %}
                     </td>
                     <td>
-                        {{ don week in done }}
+                        {% for don in done %}
                         {% if user == don.user %}
                         <br>{{ don.goal_name }}
                         <a href="{% url 'move goal' day.goal_id %}">{{ don.goal_id }}</a>

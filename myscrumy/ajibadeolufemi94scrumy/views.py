@@ -37,8 +37,28 @@ def gen_id():
 
 def home(request):
     goals = ScrumyGoals.objects.filter(goal_name='Keep Learning Django')
+    users = User.objects.all()
+    weekly = GoalStatus.objects.get(status_name="Weekly Goal")
+    weekly = weekly.scrumygoals_set.all()
+    daily = GoalStatus.objects.get(status_name="Daily Goal")
+    daily = daily.scrumygoals_set.all()
+    verify = GoalStatus.objects.get(status_name="Verify Goal")
+    verify = verify.scrumygoals_set.all()
+    done = GoalStatus.objects.get(status_name="Done Goal")
+    done = done.scrumygoals_set.all()
+    goals = ScrumyGoals.objects.filter(goal_name="Learn django", goal_id= gen_id())
+    user = User.objects.all()
+    #goals = ScrumyGoals.objects.filter(goal_name='Keep Learning Django')
+    context = {
+        'goals':goals,
+        'users': users,
+        'weekly': weekly,
+        'daily':daily,
+        'verify':verify,
+        'done':done,
+    }
     output = ', '.join([goal.goal_name for goal in goals])
-    return HttpResponse(output)
+    return render(request, "ajibadeolufemi94scrumy/home.html", context)
 
     
 
