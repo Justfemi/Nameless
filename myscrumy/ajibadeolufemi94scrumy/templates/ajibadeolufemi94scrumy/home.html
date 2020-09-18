@@ -83,7 +83,12 @@
                         <br>{{ user }}
                     </td>
                     <td>
-                        {{ goal_name }}
+                        {% for item in goal_name %}
+                        {% if user == item.user %}
+                        {{ item.goal_name}}
+                        {{ item.goal_id }}
+                        {% endif %}
+                        {% endfor %}
                     </td>
                     <!-- <td>
                         {% for week in weekly %}
