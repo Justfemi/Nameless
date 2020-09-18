@@ -36,7 +36,7 @@ def gen_id():
         return g_id 
 
 def home(request):
-    goals = ScrumyGoals.objects.filter(goal_name='Keep Learning Django')
+    goals = ScrumyGoals.objects.filter(goal_name='Learning Django')
     users = User.objects.all()
     weekly = GoalStatus.objects.get(status_name="Weekly Goal")
     weekly = weekly.scrumygoals_set.all()
@@ -47,7 +47,7 @@ def home(request):
     done = GoalStatus.objects.get(status_name="Done Goal")
     done = done.scrumygoals_set.all()
     goals = ScrumyGoals.objects.filter(goal_name="Learn django", goal_id= gen_id())
-    user = User.objects.all()
+    
     #goals = ScrumyGoals.objects.filter(goal_name='Keep Learning Django')
     context = {
         'goals':goals,
