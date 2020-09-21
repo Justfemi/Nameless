@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
-    <!-- <style>
+    <style>
     
         body {
         background-color: rgb(236, 235, 235);
@@ -50,21 +50,9 @@
             color: brown;
             font-size: large;
         }
-    </style> -->
+    </style> 
 </head>
 <body>
-    <!--<div id = 'head'>
-        <h2>Welcome {{current_user}},
-           {%if current_user.username == 'louis'%} You are the Super Admin
-           {%else%}
-           you're a/an {{group}}
-           {%endif%}
-       </h2> 
-       <li class="addgoal"><a href="{% url 'add goal' %}"> Visit here to add Goals </a></li><br>  
-       {% if current_user.is_authenticated %}
-           <a class="logt" href="{% url 'logout' %}">logout</a>
-       {%endif%}
-       </div> -->
     <div>
         <table>
             <thead class="head">
@@ -82,15 +70,7 @@
                     <th>
                         <br>{{ user }}
                     </th>
-                    <th>
-                        {% for item in goal_name %}
-                        {% if user == item.user %}
-                        {{ item.goal_name}}
-                        {{ item.goal_id }}
-                        {% endif %}
-                        {% endfor %}
-                    </th>
-                    <!-- <td>
+                    <td>
                         {% for week in weekly %}
                         {% if user == week.user %}
                         <br>{{ week.goal_name }}
@@ -126,7 +106,7 @@
                 {% endfor %}
             </tbody>
         </table>
-    </div> -->
+    </div> 
 </body>
 </html>
 
