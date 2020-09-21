@@ -7,17 +7,9 @@
     <title>Login</title>
 </head>
 <body>
-    <!-- <div class="form Container">
-       <form method="POST">
-           {% csrf_token %}
-           <label>Username:</label>
-           <input type="text" name="username"> 
-           <br><label>Password:</label> 
-           <input type="password" name="password">
-           <br><input type="submit" name="submit" value="Submit"> 
-           <h2><a href="{% url 'index' %}">Register Here</a></h2>
-       </form> 
-    </div> -->
+    <div>
+        <h2><a href="{% url 'index' %}">Index Page</a></h2>
+    </div>
 
     {% if form.errors %}
     <p>Invalid Login Credentials</p>
