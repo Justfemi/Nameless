@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import User, ScrumyGoals, ScrumyHistory, GoalStatus
 import random
 from .forms import SignupForm, CreateGoalForm
+from django.contrib.auth.models import Group
 
 # Create your views here.
 #def get_grading_parameters(request):
@@ -19,7 +20,11 @@ def index(request):
             cd = form.cleaned_data
             newUser = User.objects.create_user(username=cd['username'], password=form.cleaned_data['password'], email=cd['email'])
             newUser.save()
-            return HttpResponse("You have successfully created an account")
+            newUser.is_staff = True
+            newUser.is_superuser = True
+            my_group = Group.objects.get( name='Developer' )
+            my_group.user_set.add(newUser)
+            return redirect ( 'success')
     else:
         form = SignupForm()
     arg = {'form':form}
