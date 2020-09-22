@@ -53,6 +53,9 @@
 </head>
 <body>
     <div>
+        <a href="{% url 'add goal' %}"> Visit here to add Goals </a>
+    </div>
+    <div>
         <table>
             <thead class="head">
                 <tr>
@@ -97,7 +100,7 @@
                         {% for don in done %}
                         {% if user == don.user %}
                         <br>{{ don.goal_name }}
-                        <a href="{% url 'move goal' day.goal_id %}">{{ don.goal_id }}</a>
+                        <a href="{% url 'move goal' don.goal_id %}">{{ don.goal_id }}</a>
                         {% endif %}
                         {% endfor %}
                     </td>
