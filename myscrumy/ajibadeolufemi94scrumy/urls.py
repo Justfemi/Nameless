@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views
+from django.contrib import admin
 
 urlpatterns = [
 #   path('', views.get_grading_parameters),

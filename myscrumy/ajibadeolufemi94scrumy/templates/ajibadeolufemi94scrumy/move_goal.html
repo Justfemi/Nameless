@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Goals</title>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add New Goal</title>
     <style>
         body {
             background-color:  rgb(212, 208, 236);
@@ -13,8 +13,8 @@
             color: black;
             font-family: sans-serif;
         }
-        div{
-            width: 30%;
+        #form{
+            width: 20%;
             border-radius: 20px;
             border: none;
             color:black;
@@ -25,7 +25,7 @@
             box-shadow: 3px 3px 7px black;
             font-family: 'Lucida Sana Unicode', 'Lucida Granade', san-serif;
         }
-        .submit{
+        .one{
             background-color: #4caf50;
             color: black;
             font-size: 17px;
@@ -37,35 +37,60 @@
             margin:0 auto;
             display:block;  
         }
-        .header{
-            top: 10%;
-            margin-left: 40%;
-            font-size: 36px;
-            font-family: 'Lucida Sana Unicode', 'Lucida Granade', san-serif;
-            color: black;
-        }
-        input{
-            width: 75%;
-            height: 30px;
-            align-items: center;
-            border-radius: 10px;
-        }
-
         select{
             width: 75%;
             height: 30px;
             align-items: center;
             border-radius: 10px;
         }
+        div#head{
+            width: 100%;
+            height: 80px;
+            color: antiquewhite;
+            background-color: cadetblue;
+        }
+        .messages{
+            color: brown;
+        }
+        a:link {
+            color: purple;
+            background-color: transparent;
+            text-decoration: none;
+        }
+          
+        a:visited {
+            color: green;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        
+        a:hover {
+        color: red;
+        background-color: transparent;
+        text-decoration: underline;
+        }
+        
+        a:active {
+            color:  pink;
+            background-color: transparent;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <h2 class="header">Add a new goal</h2>
-    <div>
+    <h2>Move Goal</h2>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tages %} class="{{ message.tags }}" {% endif %}>{{ message }} <a href="{% url 'home' %}">Go Home</a> </li>
+        {% endfor %}    
+    </ul>    
+    {% endif %}
+    <div id='form'>
         <form action="" method="POST">
             {% csrf_token %}
-            {{ goal_form.as_p }}
-            <input class="submit" type="submit" name="submit" value="Add Goal">
+            {{ move_form.as_p }}
+            <input class="one" type="submit" name="submit" value="Move Goal">
         </form>
     </div>
 </body>

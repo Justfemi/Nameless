@@ -6,14 +6,83 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Index</title>
 </head>
+<style>
+    body{
+        background-color: rgb(212, 208, 236);
+    }
+    div{
+        width: 40%;
+        border-radius: 20px;
+        border: none;
+        background-color: rgb(100, 70 , 100);
+        padding: 20px;
+        margin: 40px auto;
+        font-size: 20px;
+        box-shadow: 3px 3px 7px black;
+        font-family: 'Lucida Sana Unicode', 'Lucida Granade', san-serif;
+    }
+    .submit{
+        background-color: #4caf50;
+        color: black;
+        font-size: 17px;
+        padding:10px;
+        border: none;
+        width: 25%;
+        height: 30px;
+        margin:0 auto;
+        display:block;
+        border-radius: 20px;
+    }
+    #end {
+        font-size: 15px;
+        text-align: center;
+        text-decoration: none;
+    }
+    .sign{
+        top: 10%;
+        margin-left: 40%;
+        font-size: 36px;
+        font-family: 'Lucida Sana Unicode', 'Lucida Granade', san-serif;
+    }
+    input{
+        width: 80%; 
+        height: 30px;
+        align-items: center;
+        border-radius: 10px;
+    }
+
+    a:link {
+        color: pink;
+        background-color: transparent;
+        text-decoration: none;
+    }
+      
+    a:visited {
+        color: red;
+        background-color: transparent;
+        text-decoration: none;
+    }
+    
+    a:hover {
+    color: purple;
+    background-color: transparent;
+    text-decoration: underline;
+    }
+    
+    a:active {
+        color:  green;
+        background-color: transparent;
+        text-decoration: underline;
+    }
+</style>
 <body>
     <div>
         <form method="POST">
             {% csrf_token %}
             <h3 class="sign">Sign Up</h3>
             {{ form.as_p }}
-            <span><input class="" type="submit" name="submit" value="Register User"> 
-            <p>Already have an account? Log in <a href="{% url 'login' %}">here</a></p></span>
+            <span><input class="submit" type="submit" name="submit" value="Register User"> 
+            <br><p id="end">Already have an account? Log in <a href="{% url 'login' %}">here</a></p></span>
         </form>
     </div>
     <script>

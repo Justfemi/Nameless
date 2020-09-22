@@ -5,17 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
+    <style>
+        body{
+            background-color: rgb(212, 208, 236);
+        }
+        div{
+            width: 30%;
+            border-radius: 20px;
+            border: none;
+            background-color: rgb(100, 70 , 100);
+            padding: 30px;
+            margin: 40px auto;
+            font-size: 20px;
+            box-shadow: 3px 3px 7px black;
+            font-family: 'Lucida Sana Unicode', 'Lucida Granade', san-serif;
+        }
+        
+        input.one{
+            width: 75%;
+            height: 30px;
+            align-items: center;
+            border-radius: 10px;
+        }
+
+        label{
+            font-size: 20px;
+        }
+        #end {
+            font-size: 15px;
+            text-align: center;
+            text-decoration: none;
+
+        }
+        .button{
+            background-color: #4caf50;
+            color: black;
+            font-size: 17px;
+            padding:10px;
+            border: none;
+            width: 40%;
+            height: 30px;
+            border-radius: 20px;
+            margin:0 auto;
+            display:block;      
+        }
+        .sign{
+            top: 10%;
+            margin-left: 40%;
+            font-size: 36px;
+            font-family: 'Lucida Sana Unicode', 'Lucida Granade', san-serif;
+        }
+
+        a:link {
+            color: pink;
+            background-color: transparent;
+            text-decoration: none;
+        }
+          
+        a:visited {
+            color: yellow;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        
+        a:hover {
+        color: red;
+        background-color: transparent;
+        text-decoration: underline;
+        }
+        
+        a:active {
+            color:  green;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div class="form Container">
         <form method="POST">
             {% csrf_token %}
-            <label>Username:</label>
-            <input type="text" name="username"> 
-            <br><label>Password:</label> 
-            <input type="password" name="password">
-            <br><input type="submit" name="submit" value="Submit"> 
-            <h2><a href="{% url 'index' %}">Register Here</a></h2>
+            <h3 class="sign">Sign In</h3>
+            <label id='user'>Username:</label>
+            <input class='one' type="text" name="username"> <br/>
+            <br><label id='pass'>Password:</label> 
+            <input class='one' type="password" name="password"> <br/>
+            
+            <br><input class="button" type="submit" name="submit" value="Submit"> 
+            <p id="end">Create an account <a href="{% url 'index' %}">Register Here</a></p>
         </form> 
     </div>
 
