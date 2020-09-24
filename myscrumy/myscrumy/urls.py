@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ajibadeolufemi94scrumy/',include('ajibadeolufemi94scrumy.urls')),
+    path('websocket/', include('websocket.urls')),
 ]

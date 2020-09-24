@@ -7,13 +7,9 @@ from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 
-# Create your views here.
-#def get_grading_parameters(request):
-#    return HttpResponse("This is a Scrum Application")
 
 def index(request):
     goal = ScrumyGoals.objects.filter( goal_name = 'Learn Django' )
-    #return HttpResponse( goal )
     form = SignupForm()
     if request.method == "POST":
         form = SignupForm( request.POST )
@@ -32,6 +28,7 @@ def index(request):
     arg = {'form':form}
     return render( request, 'ajibadeolufemi94scrumy/index.html', arg )
     
+
 def move_goal (request, goal_id):
     context = {'goal_id': goal_id}
     move_form = MoveGoalForm()
@@ -83,8 +80,8 @@ def move_goal (request, goal_id):
                     post = mover.save()
                     return redirect( 'home' )
                     
-            else:
-                move_form = MoveGoalForm(instance=instance)
+        else:
+            move_form = MoveGoalForm(instance=instance)
 
     except ObjectDoesNotExist:
         return render( request, 'ajibadeolufemi94scrumy/exception.html', context )
@@ -97,12 +94,6 @@ def move_goal (request, goal_id):
         'move_form':move_form,
         } )
 
-    #error = {'error': "A record with that goal id does not exist"}
-    #try:
-        #goal = ScrumyGoals.objects.get(goal_id = goal_id)
-    #except:
-        #return render( request, 'ajibadeolufemi94scrumy/exception.html', error )
-    #return HttpResponse ( goal.goal_name )
 
 def add_goal(request):
     current_user = request.user
@@ -155,13 +146,6 @@ def add_goal(request):
     return render( request, 'ajibadeolufemi94scrumy/add_goal.html', args )
 
 
-    #user = User.objects.get(username='louis')
-    #goal_status = GoalStatus.objects.get(status_name="Weekly Goal")
-    #ScrumyGoals.objects.create(goal_name="Keep Learning Django", goal_id = gen_id(), created_by="Louis", 
-    #moved_by = "Louis", owner="Louis", goal_status=goal_status, user=user )
-    #return HttpResponse('Goal has been successgully added') 
-
-
 def home(request):
     goals = ScrumyGoals.objects.filter(goal_name='Keep Learning Django')
     users = User.objects.all()
@@ -178,9 +162,6 @@ def home(request):
 
     if current_user.username == 'louis':
         group = group
-
-    #goals = ScrumyGoals.objects.filter(goal_name="Learn django", goal_id= gen_id())
-    #goals = ScrumyGoals.objects.filter(goal_name='Keep Learning Django')
     else: 
         group = current_user.groups.all()[0]
     context = {
@@ -193,8 +174,8 @@ def home(request):
         'current_user':current_user,
         'group':group,
     }
-    #output = ', '.join([goal.goal_name for goal in goals])
     return render(request, "ajibadeolufemi94scrumy/home.html", context)
+
 
 def gen_id():
     id_list = ScrumyGoals.objects.all()
