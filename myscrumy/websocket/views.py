@@ -29,7 +29,7 @@ def disconnect(request):
     body = _parse_body( request.body )
     connection_id = body['connectionId']
     Connection.objects.get( connection_id=connection_id).delete()
-    return JsonResponse('message': 'disconnect successfully', status=200, safe=False )
+    return JsonResponse('disconnect successfully', status=200, safe=False )
 
 
 def _send_to_connection(connection_id, data):
