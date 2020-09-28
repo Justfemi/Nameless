@@ -29,7 +29,7 @@ def disconnect(request):
     body = _parse_body( request.body )
     connection_id = body['connectionId']
     Connection.objects.get( connection_id=connection_id).delete()
-    return JsonResponse('disconnect successfully', status=200, safe=False )
+    return JsonResponse('message':'disconnect successfully', status=200, safe=False )
 
 
 def _send_to_connection(connection_id, data):
@@ -43,29 +43,33 @@ def _send_to_connection(connection_id, data):
 
 @csrf_exempt
 def send_message(request):
-    body = _parse_body( request.body )
-    chat_message = ChatMessage.objects.create( username=body['body']['username'],
-    message=body['body']['message'], timestamp=body['body']['timestamp'])
-    connections = [i.connection_id for i in Connection.objects.all()]
-    body={'username': chat_message.username, 'message':chat_message.message, 
-    'timestamp':chat_message.timestamp}
-    data = {'messages':[body]}
-    for connection in connections:
-        _send_to_connection( connection, data)
-    return JsonResponse( 'successfully sent', status=200, safe=False )
+    body = _parse_body(request.body)['body']
+    message = ChatMessage(username=body['username'], message=body['content'], timestamp=body['timestamp'])
+    message.save()
+    connections = Connection.objects.all()
+    data = {'messages': [body]}
+
+    for connected in connections:
+        _send_to_connection(connected.connection_id, data)
+
+    return HttpResponse('done', status=200)
+
 
 
 @csrf_exempt
 def get_recent_messages(request):
-    body = _parse_body( request.body )
-    connectionId = body['connectionId']
-    connection_id = Connection.objects.get(connection_id=connection_id).connection_id
-    messages = list((ChatMessage.objects.get().order_by("pk")))
-    if len(messages) > 5:
-        data = {'messages':[{'username':chat_message.username, 'message':chat_message.message, 
-        'timestamp':chat_message.timestam} for chat_message in messages[-5:]]}
-    else:
-        data = {'messages':[{'username':chat_message.username, 'message':chat_message.message, 
-        'timestamp':chat_message.timestam} for chat_message in messages]}
-    _send_to_connection(connection_id, data)
-    return JsonResponse('successfully sent', status=200, safe=False)
+    messages = ChatMessage.objects.order_by('-id')
+    chats = []
+
+    for message in messages:
+        chats.append({
+            'username': message.username,
+            'message': message.message,
+            'timestamp': message.timestamp })
+
+    data = {'messages': chats}
+
+    body = _parse_body(request.body)
+    connection_id = body['connectionId']
+    connection = Connection.objects.get(connection_id=connection_id)
+    _send_to_connection(connection.connection_id, data)

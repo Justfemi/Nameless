@@ -12,3 +12,7 @@ urlpatterns = [
 #unsafe:wss://ho60s07eke.execute-api.us-east-2.amazonaws.com/test  -> websocket url
 #https://ho60s07eke.execute-api.us-east-2.amazonaws.com/test/@connections  -> connection url
 #wscat testing -> wscat -c wss://ho60s07eke.execute-api.us-east-2.amazonaws.com/test
+
+# wscat -c wss://ho60s07eke.execute-api.us-east-2.amazonaws.com
+# {"action":"sendMessage", "username":"Rose","content":"Hello all”","timestamp":"4:00 PM"}
+# {"action": "getRecentMessages"}
